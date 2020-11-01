@@ -1,0 +1,89 @@
+<?php
+
+namespace Config;
+
+// Create a new instance of our RouteCollection class.
+$routes = Services::routes();
+
+// Load the system's routing file first, so that the app and ENVIRONMENT
+// can override as needed.
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
+	require SYSTEMPATH . 'Config/Routes.php';
+}
+
+/**
+ * --------------------------------------------------------------------
+ * Router Setup
+ * --------------------------------------------------------------------
+ */
+// $routes->setDefaultNamespace('App\Controllers');
+// $routes->setDefaultController('Dashboard');
+// $routes->setDefaultMethod('index');
+// $routes->setTranslateURIDashes(true);
+// $routes->set404Override();
+// $routes->setAutoRoute(true);
+
+$routes->setDefaultNamespace('App\Controllers');
+$routes->setDefaultController('Auth');
+$routes->setDefaultMethod('login');
+$routes->setTranslateURIDashes(true);
+$routes->set404Override();
+$routes->setAutoRoute(false);
+
+/**
+ * --------------------------------------------------------------------
+ * Route Definitions
+ * --------------------------------------------------------------------
+ */
+
+// We get a performance increase by specifying the default
+// route since we don't have to scan directories.
+// $routes->get('/', 'Dashboard::index');
+$routes->get('/', 'Auth::login');
+
+$routes->get('auth/login', 'Auth::login');
+$routes->post('auth/proses_login', 'Auth::proses_login');
+
+$routes->get('auth/logout', 'Auth::logout');
+
+$routes->get('auth/register', 'Auth::register');
+$routes->post('auth/proses_register', 'Auth::proses_register');
+
+$routes->get('dashboard', 'Dashboard::index');
+
+$routes->get('category', 'Category::index');
+$routes->get('category/create', 'Category::create');
+$routes->post('category/store', 'Category::store');
+$routes->get('category/edit/(:num)', 'Category::edit/$1');
+$routes->post('category/update', 'Category::update');
+$routes->get('category/delete/(:num)', 'Category::delete/$1');
+
+$routes->get('kendaraan', 'Kendaraan::index');
+$routes->get('kendaraan/create', 'Kendaraan::create');
+$routes->post('kendaraan/store', 'Kendaraan::store');
+$routes->get('kendaraan/edit/(:num)', 'Kendaraan::edit/$1');
+$routes->post('kendaraan/update', 'Kendaraan::update');
+$routes->get('kendaraan/show/(:num)', 'Kendaraan::show/$1');
+$routes->get('kendaraan/delete/(:num)', 'Kendaraan::delete/$1');
+
+$routes->get('service', 'Service::index');
+$routes->get('service/import', 'Service::import');
+$routes->post('service/proses_import', 'Service::proses_import');
+$routes->get('service/export', 'Service::export');
+
+/**
+ * --------------------------------------------------------------------
+ * Additional Routing
+ * --------------------------------------------------------------------
+ *
+ * There will often be times that you need additional routing and you
+ * need it to be able to override any defaults in this file. Environment
+ * based routes is one such time. require() additional route files here
+ * to make that happen.
+ *
+ * You will have access to the $routes object within that file without
+ * needing to reload it.
+ */
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+}
