@@ -67,6 +67,7 @@ $routes->get('kendaraan/show/(:num)', 'Kendaraan::show/$1');
 $routes->get('kendaraan/delete/(:num)', 'Kendaraan::delete/$1');
 
 $routes->get('service', 'Service::index');
+$routes->get('service/manual', 'Service::manual');
 $routes->get('service/import', 'Service::import');
 $routes->post('service/proses_import', 'Service::proses_import');
 $routes->get('service/export', 'Service::export');

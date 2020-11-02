@@ -31,6 +31,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <b class="text-danger">Penting !</b> Baca <a href="<?= base_url('service/manual'); ?>" class="text-success"><b>Instruksi</b></a> Sebelum Import Data !
 
                             <?php
                             if (!empty(session()->getFlashdata('success'))) { ?>

@@ -29,7 +29,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url('kendaraan'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-cart-plus"></i>
+                        <i class="nav-icon fas fa-car"></i>
                         <p>Manajemen Kendaraan</p>
                     </a>
                 </li>

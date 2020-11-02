@@ -25,6 +25,10 @@ class Service extends Controller
         echo view('service/index', $data);
     }
 
+    public function manual()
+    {
+        echo view('service/manual');
+    }
     public function import()
     {
         echo view('service/import');
